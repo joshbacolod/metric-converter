@@ -1,0 +1,149 @@
+:root {
+    --colorMain: #AAD7D9;
+    --colorSubText: #FBF9F1;
+    --colorSecondary: #92C7CF;
+    --colorText: #3D3D3D;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: var(--colorText);
+    font-family: "Inter", sans-serif;
+    background: var(--colorMain);
+}
+
+body {
+    min-height: 650px;
+}
+
+h1 {
+    margin: 10px;
+    font-weight: 800;
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.2rem;
+    line-height: 24px;
+    font-weight: 600;
+    background: var(--colorSubText);
+}
+
+
+
+p {
+    margin: 30px 5px 5px 5px;
+    font-size: 1.3rem;
+    line-height: 24px;
+    text-align: center;
+}
+
+button {
+    padding: 12px 30px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    background-color: var(--colorSecondary);
+    color: var(--colorSubText);
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+button:hover {
+    color: var(--colorText);
+    background: var(--colorSubText);
+    transition: 0.2s;
+}
+
+
+input {
+    padding: 8px 16px;
+    border: 2px solid var(--colorSecondary);
+    border-radius: 7px;
+}
+
+input::-webkit-inner-spin-button, input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+select {
+    margin: 10px 0;
+    padding: 5px 10px;
+    border: 2px solid var(--colorSecondary);
+    border-radius: 7px;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-section div {
+    margin: 20px 0 10px 0;
+}
+
+.button-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.conversion-section {
+    padding: 60px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px;
+    background: var(--colorSubText);
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fade-up 0.7s linear;
+}
+
+.conversion-section * {
+    background: var(--colorSubText);
+}
+
+.converter {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.button-active {
+    background: var(--colorSubText);
+    color: var(--colorText);
+}
+
+#converter-main {
+    display: none;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+@keyframes fade-up {
+    0% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+}

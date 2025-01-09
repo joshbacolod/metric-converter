@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Mono:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Pacifico&family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <section class="hero-section">
+        <div>
+            <h1>Simple Metric Unit Conversion</h1>
+            <p>Please select your type of conversion</p>
+        </div>
+        <div class="button-list">
+            <button id="length-btn" class="btn" onclick="conversionType('length')">Length</button>
+            <button id="mass-btn" class="btn" onclick="conversionType('mass')">Mass</button>
+            <button id="liquid-btn" class="btn" onclick="conversionType('liquid')">Liquid</button>
+        </div>
+    </section>
+    <section class="conversion-section" id="converter-main">
+        <div class="converter">
+            <h2>Convert From:</h2>
+            <input type="number" name="" class="text-input" id="conversion-value">
+            <div class="dropdown-menu">
+            <label for="from-mass-unit">Choose a unit:</label>
+            <select name="from-mass-unit" class="dropdown-from" id="converter-from">
+                <!-- <option value="millimeters">Millimeters</option>
+                <option value="centimeter">Centimeter</option>
+                <option value="meter">Meter</option>
+                <option value="kilometer">Kilometer</option> -->
+            </select>
+            </div>
+        </div> 
+        <div class="converter">
+            <h2>Convert To:</h2>
+            <input type="number" name="" class="text-input" id="output" readonly>
+            <div>
+            <label for="to-mass-unit">Choose a unit:</label>
+            <select name="to-mass-unit" class="dropdown-to" id="converter-to">
+                <!-- <option value="millimeters">Millimeter</option>
+                <option value="centimeter">Centimeter</option>
+                <option value="meter">Meter</option>
+                <option value="kilometer">Kilometer</option> -->
+            </select>
+            </div>
+        </div>
+    </section>
+    <!-- <section class="conversion-section" id="mass-converter">
+        <div class="converter">
+            <h2>Convert From:</h2>
+            <input type="number" name="" class="text-input">
+            <div class="dropdown-menu">
+            <label for="from-mass-unit">Choose a unit:</label>
+            <select name="from-mass-unit" class="dropdown-from">
+                <option value="millimeters">Milligram</option>
+                <option value="centimeter">Centigram</option>
+                <option value="meter">Gram</option>
+                <option value="kilometer">Kilogram</option>
+            </select>
+            </div>
+        </div> 
+        <div class="converter">
+            <h2>Convert To:</h2>
+            <input type="number" name="" class="text-input">
+            <div>
+            <label for="to-mass-unit">Choose a unit:</label>
+            <select name="to-mass-unit" class="dropdown-to">
+                <option value="millimeters">Milligram</option>
+                <option value="centimeter">Centigram</option>
+                <option value="meter">Gram</option>
+                <option value="kilometer">Kilogram</option>
+            </select>
+            </div>
+        </div>
+    </section> -->
+    <!-- <section class="conversion-section" id="liquid-converter">
+        <div class="converter">
+            <h2>Convert From:</h2>
+            <input type="number" name="" class="text-input">
+            <div class="dropdown-menu">
+            <label for="from-mass-unit">Choose a unit:</label>
+            <select name="from-mass-unit" class="dropdown-from">
+                <option value="millimeters">Milliter</option>
+                <option value="centimeter">Centiliter</option>
+                <option value="meter">Liter</option>
+                <option value="kilometer">Kiloliter</option>
+            </select>
+            </div>
+        </div> 
+        <div class="converter">
+            <h2>Convert To:</h2>
+            <input type="number" name="" class="text-input">
+            <div>
+            <label for="to-mass-unit">Choose a unit:</label>
+            <select name="to-mass-unit" class="dropdown-to">
+                <option value="millimeters">Milliter</option>
+                <option value="centimeter">Centiliter</option>
+                <option value="meter">Liter</option>
+                <option value="kilometer">Kiloliter</option>
+            </select>
+            </div>
+        </div>
+    </section> -->
+    <script src="script.js"></script>
+</body>
+</html>
