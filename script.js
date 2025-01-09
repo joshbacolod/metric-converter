@@ -8,9 +8,6 @@ const input = document.querySelector("#conversion-value")
 
 let output = document.querySelector("#output")
 let convertedValue = ""
-// let stepBase = ""
-// let stepCount = ""
-// let stepTotal = stepBase - stepCount
 
 const lengthUnits = `                
     <option value="millimeters">Millimeters</option>
@@ -53,41 +50,6 @@ function conversionType(type) {
             break
     }
 }
-
-// function convert(baseNumber, secondaryNumber, arg) {
-//     switch(arg) {
-//         case "direct":
-//             val = baseNumber / secondaryNumber
-//             convertedValue = val
-//             break
-//         case "reverse":
-//             val = baseNumber * secondaryNumber
-//             convertedValue = val
-//             break
-//     }
-// }
-
-// function stepBaseFinder() {
-//     if (dropdownFrom.value === "millimeters" || dropdownFrom.value === "milligrams" || dropdownFrom.value === "milliliters") {
-//         stepBase = 0
-//     } else if (dropdownFrom.value === "centimeters") {
-//         stepBase = 1
-//     } else if (dropdownFrom.value === "meters" || dropdownFrom.value === "grams" || dropdownFrom.value === "liters") {
-//         stepBase = 2
-//     } else if (dropdownFrom.value === "kilometers" || dropdownFrom.value === "kilograms")
-//         stepBase = 3
-// }
-
-// function stepCountFinder() {
-//     if (dropdownTo.value === "millimeters" || dropdownTo.value === "milligrams" || dropdownTo.value === "milliliters") {
-//         stepCount = 0
-//     } else if (dropdownTo.value === "centimeters") {
-//         stepCount = 1
-//     } else if (dropdownTo.value === "meters" || dropdownTo.value === "grams" || dropdownTo.value === "liters") {
-//         stepCount = 2
-//     } else if (dropdownTo.value === "kilometers" || dropdownTo.value === "kilograms")
-//         stepCount = 3
-// }
 
 function convertUnit() {
     let convertTo = dropdownTo.value
@@ -152,57 +114,3 @@ function baseToKilo(number, arg) {
             break
     }
 }
-
-// function conversionDetection() {
-//     if (dropdownFrom.value === "millimeters" && dropdownTo.value === "centimeters") {
-//         millToCenti(inputValue.value, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "millimeters" && dropdownTo.value === "meters") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "millimeters" && dropdownTo.value === "kilometers") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         baseToKilo(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "milligrams" && dropdownTo.value === "grams") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "milligrams" && dropdownTo.value === "kilograms") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         baseToKilo(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "milliliters" && dropdownTo.value === "liters") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "millimeters" && dropdownFrom.value === "centimeters") {
-//         millToCenti(inputValue.value, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "millimeters" && dropdownFrom.value === "meters") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "millimeters" && dropdownFrom.value === "kilometers") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         baseToKilo(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "milligrams" && dropdownFrom.value === "grams") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "milligrams" && dropdownFrom.value === "kilograms") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         baseToKilo(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "milliliters" && dropdownFrom.value === "liters") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         output.value = convertedValue
-//     }
-// }
