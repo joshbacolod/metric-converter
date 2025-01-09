@@ -8,30 +8,35 @@ const input = document.querySelector("#conversion-value")
 
 let output = document.querySelector("#output")
 let convertedValue = ""
-// let stepBase = ""
-// let stepCount = ""
-// let stepTotal = stepBase - stepCount
 
 const lengthUnits = `                
-    <option value="millimeters">Millimeters</option>
-    <option value="centimeters">Centimeters</option>
-    <option value="meters">Meters</option>
-    <option value="kilometers">Kilometers</option>
+    <option value="milli">Millimeters</option>
+    <option value="centi">Centimeters</option>
+    <option value="base">Meters</option>
+    <option value="kilo">Kilometers</option>
 `
 
 const massUnits = `
-    <option value="milligrams">Milligrams</option>
-    <option value="grams">Grams</option>
-    <option value="kilograms">Kilograms</option>
+    <option value="milli">Milligrams</option>
+    <option value="base">Grams</option>
+    <option value="kilo">Kilograms</option>
 `
 
 const liquidUnits = `
-    <option value="milliliters">Milliters</option>
-    <option value="liters">Liters</option>
+    <option value="milli">Milliters</option>
+    <option value="base">Liters</option>
 `
 
-document.addEventListener("click", () => {
-    convertUnit()
+input.addEventListener("keyup", () => {
+    convert()
+})
+
+dropdownFrom.addEventListener("change", () => {
+    convert()
+})
+
+dropdownTo.addEventListener("change", () => {
+    convert()
 })
 
 function renderUnits(units) {
@@ -41,80 +46,121 @@ function renderUnits(units) {
 
 function conversionType(type) {
     converterMain.style.display = "flex"
-    switch (type){
+    switch(type) {
         case "length":
+            buttonActive("length")
             renderUnits(lengthUnits)
             break
         case "mass":
+            buttonActive("mass")
             renderUnits(massUnits)
             break
         case "liquid":
+            buttonActive("liquid")
             renderUnits(liquidUnits)
             break
     }
 }
 
-// function convert(baseNumber, secondaryNumber, arg) {
-//     switch(arg) {
-//         case "direct":
-//             val = baseNumber / secondaryNumber
-//             convertedValue = val
-//             break
-//         case "reverse":
-//             val = baseNumber * secondaryNumber
-//             convertedValue = val
-//             break
-//     }
-// }
+function reset() {
+    lengthBtn.classList.remove("button-active")
+    massBtn.classList.remove("button-active")
+    liquidBtn.classList.remove("button-active")
+    input.value = 0
+    output.value = 0
+}
 
-// function stepBaseFinder() {
-//     if (dropdownFrom.value === "millimeters" || dropdownFrom.value === "milligrams" || dropdownFrom.value === "milliliters") {
-//         stepBase = 0
-//     } else if (dropdownFrom.value === "centimeters") {
-//         stepBase = 1
-//     } else if (dropdownFrom.value === "meters" || dropdownFrom.value === "grams" || dropdownFrom.value === "liters") {
-//         stepBase = 2
-//     } else if (dropdownFrom.value === "kilometers" || dropdownFrom.value === "kilograms")
-//         stepBase = 3
-// }
-
-// function stepCountFinder() {
-//     if (dropdownTo.value === "millimeters" || dropdownTo.value === "milligrams" || dropdownTo.value === "milliliters") {
-//         stepCount = 0
-//     } else if (dropdownTo.value === "centimeters") {
-//         stepCount = 1
-//     } else if (dropdownTo.value === "meters" || dropdownTo.value === "grams" || dropdownTo.value === "liters") {
-//         stepCount = 2
-//     } else if (dropdownTo.value === "kilometers" || dropdownTo.value === "kilograms")
-//         stepCount = 3
-// }
-
-function convertUnit() {
-    let convertTo = dropdownTo.value
-    let inputValue = input.value
-    switch(dropdownFrom.value) {
-        case "milliliters":
-            if (convertTo === "liters") {
-                millToCenti(inputValue, "direct")
-                centiToBase(convertedValue, "direct")
-                output.value = convertedValue
-            } else {
-                output.value = inputValue
-            }
+function buttonActive(type) {
+    reset()
+    switch(type) {
+        case "length":
+            lengthBtn.classList.add("button-active")
             break
-        case "liters":
-            if (convertTo === "milliliters") {
-                millToCenti(inputValue, "reverse")
-                centiToBase(convertedValue, "reverse")
-                output.value = convertedValue
-            } else {
-                output.value = inputValue
-            }
+        case "mass":
+            massBtn.classList.add("button-active")
+            break
+        case "liquid":
+            liquidBtn.classList.add("button-active")
             break
     }
 }
 
+function renderOutput() {
+    output.value = convertedValue
+}
+
+function convert() {
+    let convertTo = dropdownTo.value
+    let inputValue = input.value
+    switch(dropdownFrom.value) {
+        case "base":
+            if (convertTo === "milli") {
+                centiToBase(inputValue, "reverse")
+                millToCenti(convertedValue, "reverse")
+                renderOutput()
+            } else if (convertTo === "centi") {
+                centiToBase(inputValue, "reverse")
+                renderOutput()
+            } else if (convertTo === "kilo") {
+                baseToKilo(inputValue, "direct")
+                renderOutput()
+            } else {
+                output.value = inputValue
+            }
+            break
+        case "milli":
+            if (convertTo === "centi") {
+                millToCenti(inputValue, "direct")
+                renderOutput()
+            } else if (convertTo === "base") {
+                millToCenti(inputValue, "direct")
+                centiToBase(convertedValue, "direct")
+                renderOutput()
+            } else if (convertTo === "kilo") {
+                millToCenti(inputValue, "direct")
+                centiToBase(convertedValue, "direct")
+                baseToKilo(convertedValue, "direct")
+                renderOutput()
+            } else {
+                output.value = inputValue
+            }
+            break
+        case "centi":
+            if (convertTo === "milli") {
+                millToCenti(inputValue, "reverse")
+                renderOutput()
+            } else if (convertTo === "base") {
+                centiToBase(inputValue, "direct")
+                renderOutput()
+            } else if (convertTo === "kilo") {
+                centiToBase(inputValue, "direct")
+                baseToKilo(convertedValue, "direct")
+                renderOutput()
+            } else {
+                output.value = inputValue
+            }
+            break 
+        case "kilo": 
+            if (convertTo === "base") {
+                baseToKilo(inputValue, "reverse")
+                renderOutput()
+            } else if (convertTo === "centi") {
+                centiToBase(inputValue, "reverse")
+                baseToKilo(convertedValue, "reverse")
+                renderOutput()
+            } else if (convertTo === "milli") {
+                millToCenti(inputValue, "reverse")
+                centiToBase(convertedValue, "reverse")
+                baseToKilo(convertedValue, "reverse")
+                renderOutput() 
+            } else {
+                output.value = inputValue
+            }
+    }
+}
+
 function millToCenti(number, arg) {
+    let val = ""
     switch(arg) {
         case "direct":
             val = number / 10
@@ -128,6 +174,7 @@ function millToCenti(number, arg) {
 }
 
 function centiToBase(number, arg) {
+    let val = ""
     switch(arg) {
         case "direct":
             val = number / 100
@@ -141,6 +188,7 @@ function centiToBase(number, arg) {
 }
 
 function baseToKilo(number, arg) {
+    let val = ""
     switch(arg) {
         case "direct":
             val = number / 1000
@@ -152,57 +200,3 @@ function baseToKilo(number, arg) {
             break
     }
 }
-
-// function conversionDetection() {
-//     if (dropdownFrom.value === "millimeters" && dropdownTo.value === "centimeters") {
-//         millToCenti(inputValue.value, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "millimeters" && dropdownTo.value === "meters") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "millimeters" && dropdownTo.value === "kilometers") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         baseToKilo(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "milligrams" && dropdownTo.value === "grams") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "milligrams" && dropdownTo.value === "kilograms") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         baseToKilo(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownFrom.value === "milliliters" && dropdownTo.value === "liters") {
-//         millToCenti(inputValue.value, "direct")
-//         centiToBase(convertedValue, "direct")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "millimeters" && dropdownFrom.value === "centimeters") {
-//         millToCenti(inputValue.value, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "millimeters" && dropdownFrom.value === "meters") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "millimeters" && dropdownFrom.value === "kilometers") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         baseToKilo(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "milligrams" && dropdownFrom.value === "grams") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "milligrams" && dropdownFrom.value === "kilograms") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         baseToKilo(convertedValue, "reverse")
-//         output.value = convertedValue
-//     } else if (dropdownTo.value === "milliliters" && dropdownFrom.value === "liters") {
-//         millToCenti(inputValue.value, "reverse")
-//         centiToBase(convertedValue, "reverse")
-//         output.value = convertedValue
-//     }
-// }
